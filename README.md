@@ -240,4 +240,20 @@ Vagrant.configure(2) do |config|
  config.vm.provision "shell", path: "./deploy/script.sh", args: [ip, name, url, '1234']
 end
 ```
+- change builde.xml (project name and linux user name for preprod)
 
+- use gulp 
+
+```bash
+#!/bin/bash
+
+npm install
+npm install minimatch
+npm install gracful-fs
+npm install gulp
+
+gulp sass
+gulp js
+gulp watch
+
+```
