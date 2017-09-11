@@ -6,31 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ 'common.title'|trans }}{% endblock %}</title>
     <meta name="description" content="{% block meta_description %}{{ 'common.title'|trans }}{% endblock %}">
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/ico">
 
-    {# Block de tout les css #}
+    <meta name="keywords" content="{% block meta_keywords %}{% endblock %}"/>
+    {% block meta_og %}
+        <meta property="og:title" content="{% block meta_og_title %}{% endblock %}"/>
+        <meta property="og:type" content="{% block meta_og_type %}website{% endblock %}"/>
+        <meta property="og:url"
+              content="{% block meta_og_url %}{{ absolute_url(path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params'))) }}{% endblock %}"/>
+        <meta property="og:image"
+              content="{% block meta_og_image %}{{ absolute_url(asset('img/logo.png')) }}{% endblock %}"/>
+        <meta property="og:site_name" content="{% block meta_og_site_name %}{{ 'common.title'|trans }}{% endblock %}"/>
+        <meta property="fb:app_id" content="{% block meta_og_fb %}{% endblock %}"/>
+        <meta property="og:description"
+              content="{% block meta_og_description %}{% endblock %}"/>
+    {% endblock %}
+
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <link rel="canonical"
+          href="{{ absolute_url(path(app.request.attributes.get('_route'),app.request.attributes.get('_route_params'))) }}">
+
     {% block stylesheets %}
-
-        {# Block des librairies css externe #}
-    {% block stylesheets_lib %}
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    {% endblock %}
-
-        {# Block des librairies css du thème #}
-        {% block current_stylesheet %}{% endblock %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    {% endblock %}
-
+    {% endblock stylesheets %}
+    {% block header_js %}{% endblock %}
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 </head>
 <body {% block body_class %}{% endblock %}>
 
-{# Block du template de l'entête de page #}
 {% block header %}
     <header id="header">
 
-        {# Inclusion du template pour le menu de l'entête #}
         {% include 'app/common/_header.html.twig' %}
 
     </header>
@@ -40,11 +46,9 @@
     <main id="main">
         {% block full_container %}
 
-            {# Block du template avant le contenant #}
             {% block container_before %}{% endblock container_before %}
             <div class="container {% block container_class %}{% endblock %}" id="container">
 
-                {# Block du template du contenant #}
                 {% block container %}
                     <div class="content">
 
@@ -58,28 +62,46 @@
                     </div>
                 {% endblock container %}
             </div>
-            {# Block du template après le contenant #}
+
             {% block container_after %}{% endblock container_after %}
+
         {% endblock  full_container %}
     </main>
 {% endblock body %}
 
-{# Block du template de l'entête de page #}
 {% block footer %}
     <footer id="footer">
         {% include 'app/common/_footer.html.twig' %}
     </footer>
 {% endblock %}
 
-{# Block pour les librairies javascript externe#}
-{% block script_lib %}{% endblock script_lib %}
-
 {# Block pour la librairie du thème javascript #}
-{% block current_script %}
-    <script src="{{ asset('js/app.min.js') }}"></script>
-{% endblock %}
+<script src="{{ asset('js/app.min.js') }}"></script>
 
-{# Block du js d'une vue en particulier #}
+<!--[if lt IE 9]>
+<script type="text/javascript" src="{{ asset('js/respond.min.js') }}"></script>
+<![endif]-->
+<!--[if lt IE 10]>
+<script type="text/javascript" src="{{ asset('js/jquery.placeholder.min.js') }}"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $('input, textarea').placeholder();
+    });
+</script>
+<![endif]-->
+<script>
+    $(document).ready(function () {
+        {% block icheck_script %}
+        $('input[type="checkbox"], input[type="radio"]').iCheck({
+            checkboxClass: 'icheckbox_minimal-green',
+            radioClass: 'iradio_minimal-green'
+        });
+        {% endblock %}
+    });
+</script>
+
+{% include 'AgileKernelBundle:asset:javascripts.html.twig' %}
+
 {% block view_js %}{% endblock view_js %}
 
 </body>

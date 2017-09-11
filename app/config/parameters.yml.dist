@@ -8,12 +8,11 @@ parameters:
     database_user:     root
     database_password: 1234
 
-
     mailer_transport:  smtp
     mailer_host:       in-v3.mailjet.com
-    mailer_user:       ~
-    mailer_password:   ~
-    mailer_port:       ~
+    mailer_user:       ab9822b8f2e779e61218b80c327e0fa5
+    mailer_password:   379e7f14dd7731a47c5dca5b17d5768e
+    mailer_port:       587
 
     session_prefix:    agile-skeleton
 
