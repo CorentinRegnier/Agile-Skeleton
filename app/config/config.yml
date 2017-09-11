@@ -44,7 +44,7 @@ twig:
             project_url: "%agile.project_url%"
             project_title: "%agile.project_title%"
     form_themes:
-        ['bootstrap_3_layout.html.twig']
+        ['AgileKernel:form:theme.html.twig']
 
 # Doctrine Configuration
 doctrine:
