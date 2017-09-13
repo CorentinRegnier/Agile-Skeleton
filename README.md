@@ -240,7 +240,7 @@ Vagrant.configure(2) do |config|
  config.vm.provision "shell", path: "./deploy/script.sh", args: [ip, name, url, '1234']
 end
 ```
-- change builde.xml (project name and linux user name for preprod)
+- change build.xml (project name and linux user name for preprod)
 
 - use gulp 
 
