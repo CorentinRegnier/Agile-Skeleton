@@ -4,7 +4,7 @@ assets:
             - jquery-1.11.3.min.js
             - bootstrap.min.js
             - ../../../../../web/bundles/agilekernel/vendor/select2/js/select2.min.js
-            - ../../../../../vendor/cregnier/kernel-bundle/Resources/js/agile.form.js
-            - ../../../../../vendor/cregnier/kernel-bundle/Resources/js/agile.request.js
-            - ../../../../../vendor/cregnier/kernel-bundle/Resources/js/agile.confirm.js
+            - ../../../../../vendor/dhm-it/kernel-bundle/Resources/js/agile.form.js
+            - ../../../../../vendor/dhm-it/kernel-bundle/Resources/js/agile.request.js
+            - ../../../../../vendor/dhm-it/kernel-bundle/Resources/js/agile.confirm.js
             - app.js
